@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="t d">
+  <title id="t">How Edit Creep works</title>
+  <desc id="d">Five steps: align size, crop and offset; set aside a global colour drift; compare colour and structure with one-pixel tolerance; subtract the area you marked as intended; group what remains into numbered regions with before and after crops.</desc>
+  <defs>
+    <linearGradient id="a" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7cf2c8"/><stop offset="1" stop-color="#4fd1c5"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0l10 5-10 5z" fill="#7cf2c8"/></marker>
+    <style>
+      .card{fill:#13261f;stroke:#ffffff;stroke-opacity:.09}
+      .n{font:800 15px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#062019}
+      .h{font:700 18px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#eaf6f1}
+      .s{font:13.5px 'Segoe UI',Helvetica,Arial,sans-serif;fill:#9cb8ae}
+      .k{font:700 12px 'Segoe UI',Helvetica,Arial,sans-serif;letter-spacing:2px;fill:#7cf2c8}
+    </style>
+  </defs>
+  <rect width="1200" height="380" rx="24" fill="#0b1715"/>
+  <text x="40" y="52" class="k">THE PIPELINE · ALL INSIDE A WEB WORKER IN YOUR TAB</text>
+
+  <!-- 1 Align -->
+  <g transform="translate(40 80)">
+    <rect class="card" width="204" height="262" rx="18"/>
+    <circle cx="30" cy="32" r="16" fill="url(#a)"/><text x="25" y="38" class="n">1</text>
+    <text x="56" y="38" class="h">Align</text>
+    <rect x="28" y="66" width="104" height="78" rx="6" fill="#efe7da" opacity=".85"/>
+    <rect x="60" y="88" width="104" height="78" rx="6" fill="none" stroke="#7cf2c8" stroke-width="2" stroke-dasharray="5 4"/>
+    <path d="M140 150l18 12" stroke="#7cf2c8" stroke-width="2"/>
+    <text x="22" y="196" class="s">Size, crop and offset found</text>
+    <text x="22" y="216" class="s">by a coarse-to-fine search,</text>
+    <text x="22" y="236" class="s">polished to 0.1 px.</text>
+  </g>
+  <path d="M250 211h22" stroke="#7cf2c8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 2 Normalize -->
+  <g transform="translate(278 80)">
+    <rect class="card" width="204" height="262" rx="18"/>
+    <circle cx="30" cy="32" r="16" fill="url(#a)"/><text x="25" y="38" class="n">2</text>
+    <text x="56" y="38" class="h">Normalize</text>
+    <rect x="28" y="70" width="70" height="70" rx="8" fill="#d9c7b0"/>
+    <rect x="106" y="70" width="70" height="70" rx="8" fill="#ecc6a0"/>
+    <text x="96" y="162" text-anchor="middle" class="s">ΔE 6.2 warm cast</text>
+    <text x="22" y="196" class="s">Global colour drift is</text>
+    <text x="22" y="216" class="s">measured, reported and</text>
+    <text x="22" y="236" class="s">set aside per channel.</text>
+  </g>
+  <path d="M488 211h22" stroke="#7cf2c8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 3 Compare -->
+  <g transform="translate(516 80)">
+    <rect class="card" width="204" height="262" rx="18"/>
+    <circle cx="30" cy="32" r="16" fill="url(#a)"/><text x="25" y="38" class="n">3</text>
+    <text x="56" y="38" class="h">Compare</text>
+    <g transform="translate(28 66)">
+      <rect width="148" height="78" rx="8" fill="#0e1d1a" stroke="#ffffff" stroke-opacity=".1"/>
+      <circle cx="44" cy="39" r="26" fill="#ff8a6b" opacity=".35"/><circle cx="44" cy="39" r="14" fill="#ffe66d" opacity=".8"/>
+      <circle cx="112" cy="30" r="14" fill="#d63384" opacity=".5"/>
+    </g>
+    <text x="22" y="174" class="s">CIELAB ΔE + SSIM per pixel,</text>
+    <text x="22" y="194" class="s">tolerant of anti-aliasing</text>
+    <text x="22" y="214" class="s">and one-pixel resampling.</text>
+  </g>
+  <path d="M726 211h22" stroke="#7cf2c8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 4 Subtract intent -->
+  <g transform="translate(754 80)">
+    <rect class="card" width="204" height="262" rx="18"/>
+    <circle cx="30" cy="32" r="16" fill="url(#a)"/><text x="25" y="38" class="n">4</text>
+    <text x="56" y="38" class="h">Subtract intent</text>
+    <rect x="28" y="66" width="148" height="78" rx="8" fill="#0e1d1a" stroke="#ffffff" stroke-opacity=".1"/>
+    <rect x="40" y="76" width="56" height="58" rx="6" fill="#7cf2c8" fill-opacity=".22" stroke="#7cf2c8" stroke-dasharray="5 4"/>
+    <circle cx="140" cy="104" r="12" fill="#ff8a6b" opacity=".75"/>
+    <text x="22" y="174" class="s">Paint what you asked to</text>
+    <text x="22" y="194" class="s">change — or click “This was</text>
+    <text x="22" y="214" class="s">intended” on any region.</text>
+  </g>
+  <path d="M964 211h22" stroke="#7cf2c8" stroke-width="2.5" marker-end="url(#arrow)"/>
+
+  <!-- 5 Report -->
+  <g transform="translate(992 80)">
+    <rect class="card" width="168" height="262" rx="18" stroke="#ff6b6b" stroke-opacity=".4"/>
+    <circle cx="30" cy="32" r="16" fill="url(#a)"/><text x="25" y="38" class="n">5</text>
+    <text x="56" y="38" class="h">Review</text>
+    <g font-family="Segoe UI, Arial, sans-serif" font-size="12" font-weight="800">
+      <rect x="22" y="66" width="22" height="22" rx="6" fill="#ff6b6b"/><text x="33" y="82" text-anchor="middle" fill="#10201c">1</text>
+      <rect x="22" y="96" width="22" height="22" rx="6" fill="#ffb454"/><text x="33" y="112" text-anchor="middle" fill="#10201c">2</text>
+      <rect x="22" y="126" width="22" height="22" rx="6" fill="#ffe66d"/><text x="33" y="142" text-anchor="middle" fill="#10201c">3</text>
+    </g>
+    <text x="52" y="82" class="s">major</text><text x="52" y="112" class="s">moderate</text><text x="52" y="142" class="s">minor</text>
+    <text x="22" y="194" class="s">Numbered regions,</text>
+    <text x="22" y="214" class="s">before/after crops,</text>
+    <text x="22" y="234" class="s">PNG &amp; JSON exports.</text>
+  </g>
+</svg>

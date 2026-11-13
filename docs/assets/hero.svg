@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="600" viewBox="0 0 1280 600" role="img" aria-labelledby="t d">
+  <title id="t">Edit Creep</title>
+  <desc id="d">Catch what an AI edit changed without being asked. A product photo is split by a swipe line into original and AI-edited halves; numbered boxes mark a changed weight, a recoloured logo and a missing mug handle outside the requested edit.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#122a24"/>
+      <stop offset=".6" stop-color="#0c1916"/>
+      <stop offset="1" stop-color="#081210"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7cf2c8"/>
+      <stop offset="1" stop-color="#4fd1c5"/>
+    </linearGradient>
+    <linearGradient id="title" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#bff7e3"/>
+    </linearGradient>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#efe7da"/>
+      <stop offset="1" stop-color="#ddd0bc"/>
+    </linearGradient>
+    <linearGradient id="wallWarm" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4e2cc"/>
+      <stop offset="1" stop-color="#e5ccad"/>
+    </linearGradient>
+    <radialGradient id="glow" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#7cf2c8" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#7cf2c8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="heat" cx=".5" cy=".5" r=".5">
+      <stop offset="0" stop-color="#ffe66d" stop-opacity=".9"/>
+      <stop offset=".5" stop-color="#ff8a6b" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#d63384" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0v40" fill="none" stroke="#ffffff" stroke-opacity=".04"/>
+    </pattern>
+    <clipPath id="photo"><rect x="700" y="76" width="500" height="420" rx="22"/></clipPath>
+    <clipPath id="left"><rect x="700" y="76" width="250" height="420"/></clipPath>
+    <clipPath id="right"><rect x="950" y="76" width="250" height="420"/></clipPath>
+    <g id="scene">
+      <rect x="700" y="76" width="500" height="300" fill="url(#wall)"/>
+      <rect x="700" y="376" width="500" height="120" fill="#9a7552"/>
+      <path d="M700 410c160 6 340-6 500 4M700 444c160 6 340-6 500 4" stroke="#6b4a2c" stroke-opacity=".35" stroke-width="2" fill="none"/>
+      <rect x="725" y="100" width="130" height="102" fill="#7a6550"/><rect x="731" y="106" width="118" height="90" fill="#a9d3ec"/><rect x="787" y="106" width="6" height="90" fill="#7a6550"/>
+      <ellipse cx="1050" cy="392" rx="66" ry="8" fill="#2a1a0a" opacity=".22"/>
+      <rect x="985" y="178" width="130" height="214" rx="12" fill="#2f4f46"/>
+      <rect x="1001" y="268" width="98" height="104" rx="7" fill="#f3ead8"/>
+      <text x="1050" y="296" text-anchor="middle" font-family="Georgia, serif" font-size="19" font-weight="700" fill="#2b2b2b">HILLTOP</text>
+      <text x="1050" y="316" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="3" fill="#2b2b2b">ROAST</text>
+      <rect x="1120" y="304" width="58" height="72" rx="8" fill="#fbfbf8"/>
+    </g>
+  </defs>
+
+  <rect width="1280" height="600" rx="28" fill="url(#bg)"/>
+  <rect width="1280" height="600" rx="28" fill="url(#grid)"/>
+  <circle cx="950" cy="290" r="360" fill="url(#glow)"/>
+
+  <text x="72" y="148" fill="#7cf2c8" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" letter-spacing="4">AI EDIT FORENSICS</text>
+  <text x="68" y="236" fill="url(#title)" font-family="Segoe UI Variable Display, Segoe UI, Helvetica, Arial, sans-serif" font-size="84" font-weight="800" letter-spacing="-3">Edit Creep</text>
+  <text x="72" y="294" fill="#cfe3dc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="25">Catch what an AI edit changed</text>
+  <text x="72" y="328" fill="#cfe3dc" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="25">without being asked.</text>
+
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="15" font-weight="650">
+    <rect x="72" y="380" width="176" height="40" rx="20" fill="url(#accent)"/>
+    <text x="94" y="405" fill="#062019">Auto-aligned diff</text>
+    <rect x="262" y="380" width="168" height="40" rx="20" fill="none" stroke="#ffffff" stroke-opacity=".25"/>
+    <text x="284" y="405" fill="#eaf6f1">Runs in your tab</text>
+    <rect x="444" y="380" width="128" height="40" rx="20" fill="none" stroke="#ffffff" stroke-opacity=".25"/>
+    <text x="466" y="405" fill="#eaf6f1">MIT · ufodia</text>
+  </g>
+  <g transform="translate(72 456)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <rect width="480" height="64" rx="16" fill="#13261f" stroke="#ffffff" stroke-opacity=".1"/>
+    <text x="20" y="27" font-size="13" fill="#9cb8ae" font-weight="600" letter-spacing="1.5">YOU ASKED</text>
+    <text x="20" y="49" font-size="17" fill="#eaf6f1">“Replace the plant with a floor lamp.”</text>
+  </g>
+
+  <!-- Photo: original left, edited right -->
+  <g clip-path="url(#photo)">
+    <g clip-path="url(#left)">
+      <use href="#scene"/>
+      <circle cx="1050" cy="226" r="17" fill="#c8553d"/>
+      <text x="1050" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#2b2b2b">250 g</text>
+      <path d="M1178 322a18 18 0 0 1 0 36" fill="none" stroke="#fbfbf8" stroke-width="9"/>
+      <path d="M760 392l14-74h44l14 74z" fill="#c98b5b"/>
+      <g fill="#4f9460"><ellipse cx="796" cy="270" rx="13" ry="40"/><ellipse cx="772" cy="282" rx="12" ry="38" transform="rotate(-30 772 282)"/><ellipse cx="820" cy="282" rx="12" ry="38" transform="rotate(30 820 282)"/></g>
+    </g>
+    <g clip-path="url(#right)">
+      <use href="#scene"/>
+      <rect x="950" y="76" width="250" height="420" fill="#ffb27a" opacity=".08"/>
+      <circle cx="1050" cy="226" r="17" fill="#d9822b"/>
+      <text x="1050" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="17" font-weight="700" fill="#2b2b2b">200 g</text>
+    </g>
+    <rect x="948" y="76" width="4" height="420" fill="#ffffff"/>
+    <circle cx="950" cy="286" r="16" fill="#ffffff"/>
+    <path d="M944 280l-6 6 6 6M956 280l6 6-6 6" fill="none" stroke="#0e1d1a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="890" y="92" width="52" height="20" rx="5" fill="#000" opacity=".5"/><text x="916" y="106" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="700">BEFORE</text>
+    <rect x="958" y="92" width="44" height="20" rx="5" fill="#000" opacity=".5"/><text x="980" y="106" text-anchor="middle" fill="#fff" font-family="Segoe UI, Arial, sans-serif" font-size="10" font-weight="700">AFTER</text>
+  </g>
+  <rect x="700" y="76" width="500" height="420" rx="22" fill="none" stroke="#ffffff" stroke-opacity=".18" stroke-width="2"/>
+
+  <!-- Intended area -->
+  <rect x="742" y="214" width="110" height="188" rx="8" fill="#7cf2c8" fill-opacity=".14" stroke="#7cf2c8" stroke-width="2" stroke-dasharray="7 5"/>
+  <rect x="742" y="410" width="94" height="22" rx="6" fill="#7cf2c8"/><text x="789" y="425" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="11" font-weight="800" fill="#062019">INTENDED</text>
+
+  <!-- Unintended regions -->
+  <circle cx="1050" cy="345" r="34" fill="url(#heat)"/>
+  <g font-family="Segoe UI, Arial, sans-serif" font-size="13" font-weight="800">
+    <rect x="1022" y="330" width="56" height="28" rx="5" fill="none" stroke="#ff6b6b" stroke-width="3"/>
+    <rect x="1010" y="318" width="22" height="22" rx="6" fill="#ff6b6b"/><text x="1021" y="334" text-anchor="middle" fill="#10201c">1</text>
+    <rect x="1029" y="205" width="42" height="42" rx="5" fill="none" stroke="#ffb454" stroke-width="3"/>
+    <rect x="1017" y="193" width="22" height="22" rx="6" fill="#ffb454"/><text x="1028" y="209" text-anchor="middle" fill="#10201c">2</text>
+    <rect x="1170" y="312" width="22" height="54" rx="5" fill="none" stroke="#ff6b6b" stroke-width="3"/>
+    <rect x="1158" y="300" width="22" height="22" rx="6" fill="#ff6b6b"/><text x="1169" y="316" text-anchor="middle" fill="#10201c">3</text>
+  </g>
+
+  <!-- Findings card -->
+  <g transform="translate(860 516)" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <rect width="380" height="62" rx="16" fill="#13261f" stroke="#ff6b6b" stroke-opacity=".5"/>
+    <circle cx="28" cy="31" r="9" fill="#ff6b6b"/>
+    <text x="48" y="27" font-size="15" font-weight="700" fill="#eaf6f1">3 unintended changes</text>
+    <text x="48" y="47" font-size="13" fill="#9cb8ae">weight 250 g → 200 g · logo colour · mug handle</text>
+  </g>
+</svg>

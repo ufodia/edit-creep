@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Creep — Catch what an AI edit changed without being asked</title>
+    <meta
+      name="description"
+      content="Compare an original image with its AI-edited version, mark what you asked to change, and review detected colour and structural differences outside it. Runs in your browser."
+    />
+    <meta name="theme-color" content="#0e1d1a" />
+    <meta name="color-scheme" content="dark" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Edit Creep — Catch what an AI edit changed without being asked" />
+    <meta
+      property="og:description"
+      content="You asked for a new background. Did the label, the logo or the face change too? Edit Creep finds out, locally."
+    />
+    <meta property="og:image" content="/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Edit Creep home">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect x="4" y="6" width="32" height="28" rx="6" fill="none" stroke="#7cf2c8" stroke-width="3" />
+          <path
+            d="M4 26l9-8 7 6 5-4 11 9"
+            fill="none"
+            stroke="#7cf2c8"
+            stroke-width="3"
+            stroke-linejoin="round"
+          />
+          <circle cx="28" cy="14" r="4" fill="#ff8a6b" />
+        </svg>
+        <span>Edit Creep</span>
+      </a>
+      <nav class="topnav" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="https://github.com/ufodia/edit-creep" rel="noopener" target="_blank">GitHub</a>
+        <a class="coffee" href="https://buymeacoffee.com/ufodia" rel="noopener" target="_blank">☕ Support</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section id="intro" class="intro">
+        <div class="intro-copy">
+          <p class="eyebrow">AI edit forensics · Runs in your browser</p>
+          <h1>You asked for one change. <span>What else changed?</span></h1>
+          <p class="lead">
+            Generative editors can re-render the whole picture. Labels, logos, faces and colours can shift
+            where you never asked. Drop the original and the edited image, mark the area you wanted changed,
+            and Edit Creep maps colour and structural differences that meet its detection thresholds outside
+            it.
+          </p>
+        </div>
+
+        <div class="slots">
+          <label class="slot" id="slot-original" for="file-original">
+            <input id="file-original" type="file" accept="image/*" />
+            <span class="slot-step">1</span>
+            <span class="slot-title">Original image</span>
+            <span class="slot-help">The picture before the AI touched it</span>
+            <span class="slot-file" id="name-original">PNG, JPEG, WebP, AVIF — or drop it here</span>
+          </label>
+          <label class="slot" id="slot-edited" for="file-edited">
+            <input id="file-edited" type="file" accept="image/*" />
+            <span class="slot-step">2</span>
+            <span class="slot-title">AI-edited image</span>
+            <span class="slot-help">Same scene — scale and offset are estimated</span>
+            <span class="slot-file" id="name-edited">PNG, JPEG, WebP, AVIF — or drop it here</span>
+          </label>
+        </div>
+        <div class="intro-actions">
+          <button id="demo-button" class="button primary" type="button">Try the demo pair</button>
+          <span class="fine">Nothing is uploaded. Images are decoded and compared inside this tab.</span>
+        </div>
+        <p id="intro-error" class="error" role="alert" hidden></p>
+
+        <section id="how" class="how" aria-labelledby="how-title">
+          <h2 id="how-title">How it works</h2>
+          <ol class="steps">
+            <li>
+              <strong>Align.</strong> A coarse-to-fine search estimates uniform scale and offset, including
+              modest crops. Rotation, perspective changes and non-uniform stretching are not corrected.
+            </li>
+            <li>
+              <strong>Normalize.</strong> A global colour or brightness drift is measured, reported and set
+              aside.
+            </li>
+            <li>
+              <strong>Compare.</strong> Colour difference (CIELAB ΔE) and structure (SSIM) are measured per
+              pixel, tolerating one-pixel resampling shifts.
+            </li>
+            <li>
+              <strong>Mark your intent.</strong> Paint the area you asked to change, or mark a found region as
+              intended.
+            </li>
+            <li>
+              <strong>Review.</strong> Detected differences are grouped into numbered regions with zoomed
+              before/after crops. Fine details and changes below the thresholds can be missed.
+            </li>
+          </ol>
+        </section>
+      </section>
+
+      <section id="progress" class="progress" hidden aria-live="polite">
+        <div class="progress-card">
+          <div class="spinner" aria-hidden="true"></div>
+          <p id="progress-message">Decoding images…</p>
+        </div>
+      </section>
+
+      <section id="workspace" class="workspace" hidden></section>
+    </main>
+
+    <footer class="footer">
+      <p>
+        <a href="https://github.com/ufodia/edit-creep" rel="noopener" target="_blank">Source on GitHub</a> ·
+        MIT © 2026 ufodia ·
+        <a href="https://buymeacoffee.com/ufodia" rel="noopener" target="_blank">Buy me a coffee</a>
+      </p>
+      <p class="fine">
+        Edit Creep compares downsampled pixels with heuristic thresholds. It can miss changes or flag harmless
+        differences. It does not read labels or judge whether a change is acceptable — you do.
+      </p>
+    </footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

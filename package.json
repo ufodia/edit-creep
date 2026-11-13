@@ -1,0 +1,53 @@
+{
+  "name": "edit-creep",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Compare an original image with its AI-edited version, mark the area you asked to change, and see every unintended change outside it.",
+  "license": "MIT",
+  "author": "ufodia",
+  "homepage": "https://github.com/ufodia/edit-creep#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ufodia/edit-creep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ufodia/edit-creep/issues"
+  },
+  "funding": "https://buymeacoffee.com/ufodia",
+  "keywords": [
+    "image-diff",
+    "generative-ai",
+    "image-editing",
+    "quality-assurance",
+    "ecommerce",
+    "local-first",
+    "typescript"
+  ],
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc --noEmit && vite build",
+    "postbuild": "npm run prepare:hosting",
+    "preview": "vite preview --host 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:browser": "playwright test",
+    "check": "npm run typecheck && npm test && npm run build",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare:hosting": "node scripts/prepare-hosting.mjs",
+    "screenshots": "node scripts/capture-screenshots.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "@types/node": "24.10.1",
+    "prettier": "3.10.1",
+    "typescript": "7.0.2",
+    "vite": "8.3.8",
+    "vitest": "5.1.0"
+  }
+}
