@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Compare an original image with its AI-edited version, mark the area you asked to change, and see every unintended change outside it.",
+  "description": "Review colour and structural differences outside the intended area of an AI-edited image, locally in your browser.",
   "license": "MIT",
   "author": "ufodia",
   "homepage": "https://github.com/ufodia/edit-creep#readme",
