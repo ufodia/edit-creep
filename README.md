@@ -5,6 +5,10 @@
 <h3 align="center">Review what changed outside the part you asked an AI to edit.</h3>
 
 <p align="center">
+  <a href="https://edit-creep.vercel.app/"><img src="https://img.shields.io/badge/Live_demo-Open_Edit_Creep-7cf2c8?style=for-the-badge" alt="Open the Edit Creep live demo"></a>
+</p>
+
+<p align="center">
   <a href="#quick-start"><b>Quick start</b></a> ·
   <a href="#what-it-catches">What it catches</a> ·
   <a href="#how-it-works">How it works</a> ·

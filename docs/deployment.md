@@ -2,6 +2,8 @@
 
 Edit Creep is a static site. `npm run build` writes everything to `dist/`; any static host can serve it.
 
+The public production application is [edit-creep.vercel.app](https://edit-creep.vercel.app/). Its canonical origin is `https://edit-creep.vercel.app/`; use this production address when sharing the application or checking its sitemap and indexing status. Preview deployment URLs are for verification and remain non-indexable.
+
 ## Build
 
 ```bash
