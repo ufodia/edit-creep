@@ -138,9 +138,15 @@ function onMessage(message: WorkerResponse) {
     if (selected && !analysis.regions.some((r) => r.id === selected)) selected = null;
     setBusy(false);
     showView('workspace');
-    if (!workspaceBuilt) buildWorkspace();
+    const entering = !workspaceBuilt;
+    if (entering) buildWorkspace();
     renderPanel();
     draw();
+    if (entering) {
+      const heading = workspace.querySelector<HTMLElement>('h1');
+      heading?.setAttribute('tabindex', '-1');
+      heading?.focus();
+    }
   } else if (message.type === 'error') {
     fail(message.message);
   }
@@ -417,6 +423,8 @@ function buildWorkspace() {
         {
           type: 'button',
           role: 'tab',
+          id: `view-${m.id}`,
+          'aria-controls': 'view-panel',
           class: 'mode',
           'data-mode': m.id,
           'aria-selected': String(m.id === mode),
@@ -519,7 +527,18 @@ function buildWorkspace() {
     'div',
     { class: 'viewer' },
     modebar,
-    h('div', { class: 'stage-wrap' }, stage),
+    h(
+      'div',
+      {
+        class: 'stage-wrap',
+        id: 'view-panel',
+        role: 'tabpanel',
+        tabindex: 0,
+        'aria-labelledby': `view-${mode}`,
+      },
+      stage,
+    ),
+    coordinateAreaForm(),
     controls,
     h(
       'p',
@@ -540,6 +559,7 @@ function setMode(next: Mode) {
   }
   const usesRange = mode === 'swipe' || mode === 'onion';
   rangeInput.disabled = !usesRange;
+  byId('view-panel').setAttribute('aria-labelledby', `view-${mode}`);
   rangeLabel.textContent = mode === 'onion' ? 'Opacity' : 'Swipe';
   rangeInput.value = String(Math.round((mode === 'onion' ? onion : split) * 100));
   draw();
@@ -642,6 +662,54 @@ function drawRegion(ctx: CanvasRenderingContext2D, r: Region, px: number, active
   ctx.textBaseline = 'middle';
   ctx.fillText(String(r.id), x + size / 2, (y < 0 ? 0 : y) + size / 2 + px);
   ctx.textBaseline = 'alphabetic';
+}
+
+function coordinateAreaForm(): HTMLElement {
+  const width = W,
+    height = H;
+  const field = (id: string, label: string, value: number, min: number, max: number) => {
+    const input = h('input', { id: `area-${id}`, type: 'number', value, min, max, step: 1, required: true });
+    return { input, label: h('label', { for: `area-${id}` }, label, input) };
+  };
+  const xField = field('x', 'Left (pixels)', 0, 0, width - 1);
+  const yField = field('y', 'Top (pixels)', 0, 0, height - 1);
+  const wField = field('width', 'Width (pixels)', Math.min(100, width), 1, width);
+  const hField = field('height', 'Height (pixels)', Math.min(100, height), 1, height);
+  const status = h('p', { role: 'status', class: 'coordinate-status' });
+  const form = h(
+    'form',
+    { class: 'coordinate-form', 'aria-label': 'Mark intended area with coordinates' },
+    h('p', {}, `Image: ${width} × ${height} pixels. Coordinates start at the top left.`),
+    h('div', { class: 'coordinate-fields' }, xField.label, yField.label, wField.label, hField.label),
+    h('button', { type: 'submit', class: 'button ghost small' }, 'Mark intended rectangle'),
+    status,
+  );
+  form.addEventListener('input', () => {
+    wField.input.setCustomValidity('');
+    hField.input.setCustomValidity('');
+  });
+  form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const [x, y, w, hgt] = [xField, yField, wField, hField].map((f) => f.input.valueAsNumber);
+    wField.input.setCustomValidity(x + w > width ? 'The rectangle extends past the image width.' : '');
+    hField.input.setCustomValidity(y + hgt > height ? 'The rectangle extends past the image height.' : '');
+    if (!form.reportValidity()) return;
+    const ctx = maskCanvas!.getContext('2d')!;
+    ctx.globalCompositeOperation = 'source-over';
+    ctx.fillStyle = '#7cf2c8';
+    ctx.fillRect(x, y, w, hgt);
+    showMask = true;
+    byId<HTMLInputElement>('show-mask').checked = true;
+    draw();
+    reanalyze();
+    status.textContent = `Rectangle added: left ${x}, top ${y}, width ${w}, height ${hgt} pixels.`;
+  });
+  return h(
+    'details',
+    { class: 'coordinate-picker' },
+    h('summary', {}, 'Mark intended area with coordinates'),
+    form,
+  );
 }
 
 function wireStage() {
@@ -1060,6 +1128,7 @@ function reset() {
     byId(`name-${which}`).textContent = 'PNG, JPEG, WebP, AVIF — or drop it here';
   }
   showView('intro');
+  byId('demo-button').focus();
 }
 
 showView('intro');

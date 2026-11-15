@@ -1,6 +1,34 @@
 import { expect, test, type Page } from '@playwright/test';
 import { readFile } from 'node:fs/promises';
 
+test('keyboard coordinate marking adds an intended rectangle without dragging', async ({ page }) => {
+  await loadDemo(page);
+  await expect(page.locator('#workspace h1')).toBeFocused();
+  const beforeDownload = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Report (JSON)' }).click();
+  const before = JSON.parse(await readFile((await (await beforeDownload).path())!, 'utf8'));
+  const open = page.getByText('Mark intended area with coordinates', { exact: true });
+  await open.press('Enter');
+  const form = page.getByRole('form', { name: 'Mark intended area with coordinates' });
+  await form.getByLabel('Left (pixels)').fill('0');
+  await form.getByLabel('Top (pixels)').fill('300');
+  await form.getByLabel('Width (pixels)').fill('40');
+  await form.getByLabel('Height (pixels)').fill('40');
+  const apply = form.getByRole('button', { name: 'Mark intended rectangle' });
+  await apply.press('Enter');
+  await expect(form.getByRole('status')).toContainText('left 0, top 300, width 40, height 40');
+  await expect(apply).toBeFocused();
+  const result = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Report (JSON)' }).click();
+  const report = JSON.parse(await readFile((await (await result).path())!, 'utf8'));
+  expect(report.summary.intendedShareOfImage).toBeGreaterThan(before.summary.intendedShareOfImage);
+  await form.getByLabel('Width (pixels)').fill('99999');
+  await apply.press('Enter');
+  await expect(form.getByLabel('Width (pixels)')).toBeFocused();
+  await page.getByRole('button', { name: 'New comparison', exact: true }).press('Enter');
+  await expect(page.locator('#demo-button')).toBeFocused();
+});
+
 async function loadDemo(page: Page) {
   await page.goto('/');
   await page.getByRole('button', { name: 'Try the demo pair' }).click();
@@ -240,6 +268,9 @@ test('reset cancels a queued paint analysis and releases the comparison', async 
   `);
   await page.clock.install();
   await loadDemo(page);
+  // install() still advances time; freeze before queuing the debounce so a slow
+  // CI pointer round-trip cannot dispatch analysis before the reset click.
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 60_000));
   const box = (await page.locator('#stage').boundingBox())!;
   await page.mouse.click(box.x + box.width * 0.8, box.y + box.height * 0.1);
   await expect(page.getByRole('button', { name: 'Report (JSON)' })).toBeDisabled();

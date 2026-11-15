@@ -770,3 +770,37 @@ input[type='range'] {
     transition-duration: 0.01ms !important;
   }
 }
+
+.coordinate-picker {
+  margin: 14px 18px;
+}
+.coordinate-picker summary {
+  cursor: pointer;
+  font-size: 13px;
+}
+.coordinate-form {
+  font-size: 13px;
+}
+.coordinate-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-block: 12px;
+}
+.coordinate-fields label {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.coordinate-fields input {
+  width: 100%;
+  min-width: 0;
+  padding: 8px;
+  color: inherit;
+  background: var(--surface);
+  border: 1px solid currentColor;
+  font: inherit;
+}
+.coordinate-status {
+  min-height: 1.5em;
+}

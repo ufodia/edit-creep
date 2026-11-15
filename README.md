@@ -76,6 +76,8 @@ Open the printed `http://127.0.0.1:5173` address, then:
 1. Drop the **original** image into slot 1 and the **AI-edited** image into slot 2 — or choose **Try the demo pair**.
 2. Paint or draw a box over the area you **asked** the AI to change.
 3. Review the numbered regions that remain. Click **This was intended** on any you are happy with.
+
+For keyboard-only marking, open **Mark intended area with coordinates** and enter a rectangle in image pixels. The form validates its bounds; dragging remains available.
 4. Export a **comparison sheet**, a **heatmap** or a **JSON report**.
 
 Common browser-decodable images include PNG, JPEG, WebP, AVIF, BMP and the first frame of GIF. Availability depends on your browser; the file limit is 80 MiB per image. The app attempts scale-and-offset alignment when the dimensions differ. A file under the limit can still exceed your device's decoding capacity.
