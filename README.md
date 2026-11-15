@@ -269,6 +269,7 @@ Edit Creep is free and has no ads. If it caught a wrong label before it went liv
 
 <p align="center">
   <a href="https://buymeacoffee.com/ufodia"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me a Coffee" height="56"></a>
+  <a href="https://github.com/sponsors/ufodia">Support on GitHub Sponsors</a>
 </p>
 
 ## License
